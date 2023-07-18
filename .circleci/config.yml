@@ -21,8 +21,7 @@ jobs:
           command: npm install netlify-cli
       - run:
           name: Netlify Deploy
-          command: |
-            netlify deploy --prod --dir=templates --message="CircleCI Build $CIRCLE_BUILD_NUM" --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
+          command: netlify deploy --prod --dir=templates --message="CircleCI Build $CIRCLE_BUILD_NUM" --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
 
 workflows:
   run-test-workflow:
