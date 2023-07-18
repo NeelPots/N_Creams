@@ -9,8 +9,13 @@ jobs:
           docker_layer_caching: true
       - run: python -m pip install -r requirements.txt
       - run:
-          name: Run Django
-          command: python manage.py 
+          name: Install Node.js
+          command: |
+            curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+      - run:
+          name: Run Django Server
+          command: python manage.py runserver --noinput
       - run:
           name: Install netlify-cli
           command: npm install netlify-cli -g
