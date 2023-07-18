@@ -9,13 +9,14 @@ jobs:
           docker_layer_caching: true
       - run: python -m pip install -r requirements.txt
       - run:
-          name: Run Django Server
+          name: Run Django
           command: python manage.py 
+      - run:
           name: Install netlify-cli
-          command: npm i netlify-cli
+          command: npm install netlify-cli -g
       - run:
           name: Netlify Deploy
-          command: 
+          command: |
             netlify deploy --prod --dir=templates --message="CircleCI Build $CIRCLE_BUILD_NUM" --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
 
 workflows:
