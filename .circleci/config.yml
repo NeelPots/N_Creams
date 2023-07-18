@@ -18,7 +18,7 @@ jobs:
           command: python manage.py
       - run:
           name: Install netlify-cli
-          command: npm install netlify-cli -g
+          command: npm install netlify-cli
       - run:
           name: Netlify Deploy
           command: |
