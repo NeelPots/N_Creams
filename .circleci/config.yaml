@@ -3,13 +3,15 @@ jobs:
   run-test:
     docker:
       - image: circleci/python:3.8
-    # Steps for the job
     steps:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
       - run: python -m pip install -r requirements.txt
-      - run: python manage.py collectstatic --noinput
+      - run:
+          name: Run Django Server
+          command: python manage.py runserver --noinput
+      - run:
           name: Install netlify-cli
           command: npm i netlify-cli
       - run:
@@ -17,7 +19,7 @@ jobs:
           command: |
             pip install netlify-cli
             netlify deploy --prod --dir=templates --message="CircleCI Build $CIRCLE_BUILD_NUM" --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
-# Invoke jobs via workflows
+
 workflows:
   run-test-workflow:
     jobs:
