@@ -3,7 +3,6 @@ jobs:
   run-test:
     docker:
       - image: circleci/python:3.8
-      - image: django
     # Steps for the job
     steps:
       - checkout
